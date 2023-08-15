@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Створення нового замовлення</title>
+</head>
+<body>
+<h1>Створення нового замовлення</h1>
+
+<script></script>
+<form action="/create-order" method="post">
+
+
+    <table>
+        <tr>
+            <td><label for="firstName">Ім'я:</label></td>
+            <td><input type="text" id="firstName" name="firstName" required></td>
+        </tr>
+        <tr>
+            <td><label for="lastName">Прізвище:</label></td>
+            <td><input type="text" id="lastName" name="lastName" required></td>
+        </tr>
+        <tr>
+            <td><label for="orderName">Назва замовлення:</label></td>
+            <td><input type="text" id="orderName" name="orderName" required></td>
+        </tr>
+        <tr>
+            <td><label for="orderDescription">Додаток до замовлення:</label></td>
+            <td><textarea id="orderDescription" name="orderDescription" rows="5" required></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Створити замовлення"></td>
+        </tr>
+    </table>
+</form>
+<div th:if="${message}" class="success-message">
+    <p th:text="${message}"></p>
+</div>
+</body>
+</html>

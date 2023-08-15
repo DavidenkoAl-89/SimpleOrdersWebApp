@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список замовлень</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список замовлень</title>
+</head>
+<body>
+<h1>Список замовлень</h1>
+
+<table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Замовлення</th>
+        <th>Додатковий опис</th>
+        <th>Статус</th>
+        <th>Що зробити</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.orderName}"></td>
+        <td th:text="${order.orderDescription}"></td>
+        <td th:text="${order.status}"></td>
+        <td>
+            <form th:action="@{'/orders/' + ${order.id}}" method="post">
+                <input type="hidden" name="id" th:value="${order.id}">
+                <select name="status" value=" ">
+                    <option value="ACCEPTED">Прийняти</option>
+                    <option value="REJECTED">Відклонити</option>
+                </select>
+                <button type="submit">Оновити статус</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:if="${message}" class="success-message">
+    <p th:text="${message}"></p>
+</div>
+</body>
+</html>
